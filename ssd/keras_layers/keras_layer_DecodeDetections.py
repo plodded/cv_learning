@@ -47,8 +47,6 @@ class DecodeDetections(Layer):
             img_height (int, optional): 输入图像的高度. 只有当 `normalize_coords` 设置为 `True` 时才需要.
             img_width (int, optional): 输入图像的宽度. 只有当 `normalize_coords` 设置为 `True` 时才需要.
         '''
-        if K.backend() != 'tensorflow':
-            raise TypeError("当前只支持 tensorflow, 但是你使用了 {} backend.".format(K.backend()))
 
         if normalize_coords and ((img_height is None) or (img_width is None)):
             raise ValueError("如果使用相对坐标, 并且想转换为绝对坐标, 那么需要传人图像大小的值. 传入的值为 `img_height == {}` and `img_width == {}`".format(img_height, img_width))
