@@ -3,10 +3,10 @@ SSD 模型.
 '''
 
 import numpy as np
-from keras.models import Model
-from keras.layers import Input, Lambda, Conv2D, MaxPooling2D, BatchNormalization, ELU, Reshape, Concatenate, Activation
-from keras.regularizers import l2
-import keras.backend as K
+from tensorflow.keras import Model
+from tensorflow.keras.layers import Input, Lambda, Conv2D, MaxPooling2D, BatchNormalization, ELU, Reshape, Concatenate, Activation
+from tensorflow.keras.regularizers import l2
+# import keras.backend as K
 
 from keras_layers.keras_layer_AnchorBoxes import AnchorBoxes
 from keras_layers.keras_layer_DecodeDetections import DecodeDetections
