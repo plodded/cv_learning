@@ -4,9 +4,11 @@
 
 import numpy as np
 import tensorflow as tf
-import keras.backend as K
-from keras.engine.topology import InputSpec
-from keras.engine.topology import Layer
+# import keras.backend as K
+# from keras.engine.topology import InputSpec
+# from keras.engine.topology import Layer
+from tensorflow.keras.layers import InputSpec
+from tensorflow.keras.layers import Layer
 
 class DecodeDetections(Layer):
     '''
