@@ -66,8 +66,6 @@ class AnchorBoxes(Layer):
                 'corners' `(xmin, ymin, xmax,  ymax)`, 或者 'minmax' for the format `(xmin, xmax, ymin, ymax)`.
             normalize_coords (bool, optional): 如果模型使用的相对值, 设置为 `True`. 即 model 预测的边界框坐标值在 [0,1] 之间而非绝对像素值坐标.
         '''
-        if K.backend() != 'tensorflow':
-            raise TypeError("这一层只支持 tensorflow, 但是你使用了 {} backend.".format(K.backend()))
 
         if (this_scale < 0) or (next_scale < 0) or (this_scale > 1):
             raise ValueError("`this_scale` must be in [0, 1] and `next_scale` must be >0, but `this_scale` == {}, `next_scale` == {}".format(this_scale, next_scale))
@@ -134,11 +132,8 @@ class AnchorBoxes(Layer):
                 wh_list.append((box_width, box_height))
         wh_list = np.array(wh_list)
 
-        # 获取输入 tensor 的形状
-        if K.image_dim_ordering() == 'tf':
-            batch_size, feature_map_height, feature_map_width, feature_map_channels = x._keras_shape
-        else: # 因为只支持 TensorFlow, 下面这一句可以不要, 但是也不影响功能 
-            batch_size, feature_map_channels, feature_map_height, feature_map_width = x._keras_shape
+
+        batch_size, feature_map_height, feature_map_width, feature_map_channels = x.shape
 
         # 计算 Anchor 的中心点位置, 对不同的长宽比, 中心点位置是同样的.
 
