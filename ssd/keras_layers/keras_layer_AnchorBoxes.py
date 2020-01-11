@@ -210,7 +210,7 @@ class AnchorBoxes(Layer):
         # 在 `boxes_tensor` 前面加一个 维度, 作为 batch size 的维度
         # 拼接以后维度为 5 维, 形状为 `(batch_size, feature_map_height, feature_map_width, n_boxes, 8)`
         boxes_tensor = np.expand_dims(boxes_tensor, axis=0)
-        boxes_tensor = K.tile(K.constant(boxes_tensor, dtype='float32'), (K.shape(x)[0], 1, 1, 1, 1))
+        boxes_tensor = tf.tile(tf.constant(boxes_tensor, dtype='float32'), (tf.shape(x)[0], 1, 1, 1, 1))
 
         return boxes_tensor
 
